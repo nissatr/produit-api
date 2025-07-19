@@ -17,10 +17,6 @@ public class ProduitController {
         this.produitService = produitService;
     }
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "Hello";
-    }
 
     @GetMapping("/all")
     public List<produit> getAllProduit(){
@@ -32,4 +28,23 @@ public class ProduitController {
         return produitService.createProduit(produit);
     }
 
+    @GetMapping("{id}")
+    public produit getProduitById(@PathVariable  int id){
+        return produitService.getProduitById(id);
+    }
+
+
+    @DeleteMapping("{id}")
+    //la valeur qui viendra de l'url va etre bindi enn idproduit
+    public String deleteProduitById(@PathVariable("id") int idproduit ){
+             return produitService.deleteProduitById(idproduit);
+    }
+
+    @PutMapping("{id}")
+    public produit editProduit(@PathVariable int id , @RequestBody produit produit){
+        return produitService.editProduit(id,produit);
+    }
+
 }
+
+
